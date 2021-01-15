@@ -1,12 +1,12 @@
 # Input data.
-# You receive the alert message from Network Monitoring System that on certain switch or router one particular bgp session was down. 
-# Instead of logging to this box and gathering all information manually, Python script can be used which will collect some basic information.
+# You receive an alert message from the Network Monitoring System that on certain switch or router one particular bgp session was down. 
+# Instead of logging to this box and gathering all information manually, below Python script can be used which will collect some basic information.
 # This script is intended for Arista switches and checks several things:
 # - bgp state, the output is parsed for better perceptions;
 # - log messages related to problem bgp-peer;
 # - result of ping command;
 # - tcp dump output of packets destined to peer.
-# For convenience before execution script will ask ip-addresses of switch and ip-address of bgp-peer, so there is no need to go to .py file and specify this values every time.
+# For convenience, before execution script will ask an ip-addresses of switch and an ip-address of bgp-peer, so there is no need to go to .py file and specify this values every time.
 # I intentionally made a dedicated function for each command to divide outputs via dashes, I realize that this is not so elegant decision.
 # This is just an example and of course some other things can be checked as well.
 
