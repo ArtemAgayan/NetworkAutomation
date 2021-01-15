@@ -1,7 +1,7 @@
 # Input data.
 # Imagine that in our network we have several dozen CentOS servers and several docker containers running on each server.
 # There is a need to gather a firmware version of the particular application on certain container for each server and then compare them.
-# It can be a challenge to log in on all devices, find a path to needed container, open a file where information about a firmware resides, find a particular  
+# It can be a challenge to log in on all devices, find a path to needed container, open a file where information about the firmware resides, find a particular  
 # string among all information there, make a note and finally log out from device.
 # Instead of doing all this actions a python script can be used.
 # It takes about 6 seconds to execute all this steps on 25 servers.
@@ -14,9 +14,11 @@ from concurrent.futures import ThreadPoolExecutor
 import re
 
 def gather_output(device):
-# Allows to connect to one device and gather all information from a file which contains a firmware version value.
-# <file_where_firmware_information_resides> is .txt file with dozens strings among which there is one with firmware version and it begins with "VERSION"
-# I don't use password as credentials because I have key authentication on my servers.
+    '''
+    Allows to connect to one device and gather all information from a file which contains a firmware version value.
+    <file_where_firmware_information_resides> is .txt file with dozens strings among which there is one with firmware version and it begins with "VERSION"
+    I don't use password as credentials because I have key authentication on my servers.
+    '''
     client = paramiko.SSHClient()
     client.set_missing_host_key_policy(paramiko.AutoAddPolicy())
     client.connect(hostname=device, username="name", port="22")
@@ -32,8 +34,10 @@ def gather_output(device):
     return result
 
 def show_versions(servers_list, limit):
-# Allows to connect to all devices from the list in parallel using the first function, parse only version values and make a dictionary with
-# server hostname/ip address as key and firmware version as value.
+    '''
+    Allows to connect to all devices from the list in parallel using the first function, parse only version values and make a dictionary with
+    server hostname/ip address as key and firmware version as value.
+    '''
     with ThreadPoolExecutor(max_workers = limit) as executor:
         result = executor.map(gather_output, servers_list)
         for server, output in zip(servers_list, result):
