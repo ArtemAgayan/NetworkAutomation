@@ -1,4 +1,4 @@
-# How to collect information about bgp sessions which are inactive more then one week from one Arista device using Python.
+# How to collect information about bgp sessions which are inactive more than one week from one Arista device using Python.
 
 #!/usr/bin/env python3
 # -*- coding: utf-8 -*-
