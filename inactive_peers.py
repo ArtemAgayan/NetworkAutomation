@@ -23,6 +23,9 @@ if __name__ == "__main__":
     }
     output = send_show_command(device, "sh ip bgp summary | exclude Estab")
     regex = (r'(?P<description>.*?)\s+(?P<ip>\S+)\s+\d\s+(?P<as>\S+)(?:\s+\d+\s+){4}(?P<uptime>\S+)\s+(?P<state>\S+)')
+    # Arista uses below type of "show ip bgp summary" command output:
+    # Description              Neighbor         V  AS           MsgRcvd   MsgSent  InQ OutQ  Up/Down State   PfxRcd PfxAcc
+    # BGP-PEER                 12.34.56.78      4  12345              0         0    0    0   10d00h Idle(Admin)         
     result = re.finditer(regex, output)
     pprint('-'*45)
     for match in result:
