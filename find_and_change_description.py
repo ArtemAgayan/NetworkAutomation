@@ -1,17 +1,17 @@
 # Input data.
 # Imagine that you are a network engineer and you are responsible for a large DC Fabric or for dozens of edge devices.
-# For now there are no interfaces description consistency and for future improvements you want to fix this problem.
+# For now there are no interface descriptions consistency and for future improvements you want to fix this problem.
 # For example: leaf interfaces connected to spines should have "TO-SPINE-" at the beginning of interface description and vice versa. 
-# Or "UPLINK-" if we are talking about ports on edge devices connected to providers.
+# Or "UPLINK-", if we are talking about ports on edge devices connected to providers.
 # To simplify the task, we will assume that the existing description suits us and we only need to add "TO-SPINE-" or "UPLINK-" before them.
 # And one important question: why, in principle, do we need to modify existing descriptions?
 # For example, to add some flexibility to a Network Monitoring System(will appear the ability to group all uplink traffic, if NMS supports such feature). 
 # Or to have standardization in description for automation goals.
-# Anyway to achive this a Python script can be used.
+# Anyway to achive this, a Python script can be used.
 # I have split this code in two parts:
-# first is just to gather descriptions information from devices - devices_output = find_ip(devices, "show interfaces Port-Channel 1-4 description", limit = 2)
-# second is to modify descriptions and to change them on devices - a code that will execute after above line)
-# In my example Port-Channel interfaces are connected to providers, so that's why I use above command(on some device only one ISP link can exists, on other - up to four)
+# first is just to gather descriptions information from devices - devices_output = find_ip(devices, "show interfaces Port-Channel 1-4 description", limit = 2).
+# second is to modify descriptions and to change them on devices - a code that will execute after above line.
+# In my example Port-Channel interfaces are connected to providers, so that's why I use above command(on some devices only one ISP link can exists, on others - up to four)
 # Also a yaml file should be created, consisted of below parameters:
 # - device_type: arista_eos
 #   ip: edge-switch-1
@@ -51,7 +51,7 @@ def find_ip(devices, command, limit):
     interface/description/hostname _regexes - are regexes to parse this values.
     end_list - list of nested dictionaries from all devices with switch hostname as key and interface and description as value. 
     switch - output from one particular switch.
-    interfaces/descriptions/hostnames - iterators for respective from one particular switch.
+    interfaces/descriptions/hostnames - iterators for respective values from one particular switch.
     list_of_interfaces/list_of_descriptions - lists of interfaces and descriptions values from one particular switch.
     end_result - nested dictionary from one particular switch with switch hostname as key and interface and description as value.
     interface/descr - one particular interface/interface description from one particular switch.
@@ -149,3 +149,6 @@ if __name__ == "__main__":
             #  'edge-switch-2(config-if-Po3)#description UPLINK-ISP3\n'
             #  'edge-switch-2(config-if-Po3)#end\n'
             #  'edge-switch-2#')
+            
+# This script can be used for other purposes as well. For example to gather an information about inactive bgp peers and than to delete them. 
+# Or only the first part of this code can be implemented, for information gathering purposes.
