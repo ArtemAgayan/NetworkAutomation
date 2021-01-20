@@ -150,5 +150,5 @@ if __name__ == "__main__":
             #  'edge-switch-2(config-if-Po3)#end\n'
             #  'edge-switch-2#')
             
-# This script can be used for other purposes as well. For example to gather an information about inactive bgp peers and than to delete them. 
+# This script can be used for other purposes as well. For example to gather an information about inactive bgp peers and then to delete them. 
 # Or only the first part of this code can be implemented, for information gathering purposes.
