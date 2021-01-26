@@ -35,7 +35,7 @@ def parse_bgp(command):
     BGP-PEER                 12.34.56.78      4  12345              0         0    0    0   10d00h Active         
     ‘’’
     result = []
-    regex = (r'(?P<description>.*?)\s+(?P<ip>\S+)\s+\d\s+(?P<as>\S+)(?:\s+\d+\s+){4}(?P<uptime>\S+)\s+(?P<state>\S+)')
+    regex = (r'(?P<description>.*?)\s+(?P<ip>\S+)\s+\d\s+(?P<as>\S+)(?:\s+\d+){4}\s+(?P<uptime>\S+)\s+(?P<state>\S+)')
     output = ssh.send_command(command)
     match = re.search(regex,output)
     result = match.groupdict()
