@@ -1,6 +1,6 @@
 # Input data.
 # Imagine that you are a network engineer and you are responsible for a large DC Fabric or for dozens of edge devices.
-# For now there are no interface descriptions consistency and for future improvements you want to fix this problem.
+# For now there is no interface description consistency and for future improvements you want to fix this problem.
 # For example: leaf interfaces connected to spines should have "TO-SPINE-" at the beginning of interface description and vice versa. 
 # Or "UPLINK-", if we are talking about ports on edge devices connected to providers.
 # To simplify the task, we will assume that the existing description suits us and we only need to add "TO-SPINE-" or "UPLINK-" before them.
@@ -9,7 +9,7 @@
 # Or to have standardization in description for automation goals.
 # Anyway to achive this, a Python script can be used.
 # I have split this code in two parts:
-# first is just to gather descriptions information from devices - devices_output = find_ip(devices, "show interfaces Port-Channel 1-4 description", limit = 2).
+# first is just to gather description information from devices - devices_output = find_ip(devices, "show interfaces Port-Channel 1-4 description", limit = 2).
 # second is to modify descriptions and to change them on devices - a code that will execute after above line.
 # In my example Port-Channel interfaces are connected to providers, so that's why I use above command(on some devices only one ISP link can exists, on others - up to four)
 # Also a yaml file should be created, consisted of below parameters:
