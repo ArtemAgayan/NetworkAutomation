@@ -7,7 +7,7 @@
 # And one important question: why, in principle, do we need to modify existing descriptions?
 # For example, to add some flexibility to a Network Monitoring System(will appear the ability to group all uplink traffic, if NMS supports such feature). 
 # Or to have standardization in description for automation goals.
-# Anyway to achive this, a Python script can be used.
+# Anyway to achieve this, a Python script can be used.
 # I have split this code in two parts:
 # first is just to gather description information from devices - devices_output = find_ip(devices, "show interfaces Port-Channel 1-4 description", limit = 2).
 # second is to modify descriptions and to change them on devices - a code that will execute after above line.
